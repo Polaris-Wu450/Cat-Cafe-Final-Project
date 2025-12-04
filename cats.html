@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Cat Café</title>
+    <title>Our Cats - Cat Café</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/menu.css">
 </head>
 <body>
     <nav class="navbar">
@@ -18,9 +17,9 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="home.html">Home</a></li>
-                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="menu.html">Menu</a></li>
                 <li><a href="reservation.html">Reservations</a></li>
-                <li><a href="cats.html">Our Cats</a></li>
+                <li><a href="cats.html" class="active">Our Cats</a></li>
                 <li><a href="game.html">Game</a></li>
                 <li><a href="cart.html" class="cart-link">
                     Cart <span id="cart-count" class="cart-badge">0</span>
@@ -30,22 +29,11 @@
     </nav>
 
     <main class="container">
-        <section class="menu-header">
-            <h1>Our Menu</h1>
-            <p>Delicious treats for you and your feline friends!</p>
+        <section style="text-align: center; padding: 4rem 2rem;">
+            <h1 style="font-size: 2.5rem; color: var(--primary-pink); margin-bottom: 1rem;">Our Cats</h1>
+            <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 2rem;">Meet our friendly feline residents!</p>
+            <p style="color: var(--text-light);">This feature is coming soon...</p>
         </section>
-
-        <div class="menu-filter">
-            <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="drinks">Drinks</button>
-            <button class="filter-btn" data-category="food">Food</button>
-            <button class="filter-btn" data-category="desserts">Desserts</button>
-            <button class="filter-btn" data-category="cat-treats">Cat Treats</button>
-        </div>
-
-        <div class="menu-grid" id="menu-items">
-            <!-- Menu items will be populated by JavaScript -->
-        </div>
     </main>
 
     <footer class="footer">
@@ -55,6 +43,6 @@
     </footer>
 
     <script src="main.js"></script>
-    <script src="menu.js"></script>
 </body>
 </html>
+

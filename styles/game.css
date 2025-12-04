@@ -6,13 +6,13 @@
 
 .game-header h1 {
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--primary-pink);
     margin-bottom: 0.5rem;
 }
 
 .game-header p {
     font-size: 1.1rem;
-    color: var(--text-secondary);
+    color: var(--text-light);
 }
 
 /* Game Stats */
@@ -21,9 +21,9 @@
     justify-content: center;
     gap: 3rem;
     padding: 1.5rem;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
     margin: 2rem auto;
     max-width: 600px;
 }
@@ -35,7 +35,7 @@
 .stat-label {
     display: block;
     font-size: 0.9rem;
-    color: var(--text-secondary);
+    color: var(--text-light);
     margin-bottom: 0.3rem;
 }
 
@@ -43,7 +43,7 @@
     display: block;
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--primary-pink);
 }
 
 /* Game Board */
@@ -59,13 +59,13 @@
 /* Game Card */
 .game-card {
     aspect-ratio: 1;
-    background: white;
-    border-radius: 15px;
+    background: var(--white);
+    border-radius: var(--radius-md);
     cursor: pointer;
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-sm);
 }
 
 .game-card:hover {
@@ -99,15 +99,19 @@
 }
 
 .card-front {
-    background: var(--primary-color);
-    color: white;
+    background: var(--primary-pink);
+    color: var(--white);
     font-size: 3rem;
+    font-weight: 700;
 }
 
 .card-back {
-    background: white;
-    font-size: 4rem;
+    background: var(--white);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
     transform: rotateY(180deg);
+    border: 2px solid var(--primary-pink);
 }
 
 /* Game Controls */
@@ -130,24 +134,25 @@
 }
 
 .btn-reset {
-    background: var(--primary-color);
-    color: white;
+    background: var(--primary-pink);
+    color: var(--white);
 }
 
 .btn-reset:hover {
-    background: #e09e8d;
+    background: var(--primary-dark);
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(247, 181, 167, 0.4);
+    box-shadow: var(--shadow-md);
 }
 
 .btn-hint {
-    background: var(--accent-color);
-    color: white;
+    background: var(--accent-lavender);
+    color: var(--white);
 }
 
 .btn-hint:hover {
-    background: #8fc9dc;
+    background: var(--accent-mint);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn-hint:disabled {
@@ -158,16 +163,16 @@
 
 /* Game Instructions */
 .game-instructions {
-    background: white;
-    border-radius: 15px;
+    background: var(--white);
+    border-radius: var(--radius-md);
     padding: 2rem;
     max-width: 600px;
     margin: 2rem auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: var(--shadow-sm);
 }
 
 .game-instructions h3 {
-    color: var(--primary-color);
+    color: var(--primary-pink);
     margin-bottom: 1rem;
 }
 
@@ -183,9 +188,12 @@
 }
 
 .game-instructions li:before {
-    content: "🐾";
+    content: "•";
     position: absolute;
     left: 0;
+    color: var(--primary-pink);
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 /* Win Modal */
@@ -208,8 +216,8 @@
 }
 
 .modal-content {
-    background: white;
-    border-radius: 20px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
     padding: 3rem;
     text-align: center;
     max-width: 400px;
@@ -218,49 +226,50 @@
 
 .modal-content h2 {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: var(--primary-pink);
     margin-bottom: 1rem;
 }
 
 .modal-content p {
     font-size: 1.2rem;
-    color: var(--text-secondary);
+    color: var(--text-light);
     margin-bottom: 1.5rem;
 }
 
 .win-stats {
-    background: var(--secondary-color);
+    background: var(--secondary-peach);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: var(--radius-sm);
     margin-bottom: 1.5rem;
 }
 
 .win-stats p {
     font-size: 1.1rem;
-    color: var(--text-primary);
+    color: var(--text-dark);
     margin: 0.5rem 0;
 }
 
 .win-stats span {
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--primary-pink);
 }
 
 .btn-modal {
     padding: 1rem 2rem;
-    background: var(--primary-color);
-    color: white;
+    background: var(--primary-pink);
+    color: var(--white);
     border: none;
-    border-radius: 25px;
+    border-radius: var(--radius-md);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 }
 
 .btn-modal:hover {
-    background: #e09e8d;
+    background: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Animations */

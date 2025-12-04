@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Cat Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <!-- Left Side - Branding -->
+        <div class="login-left">
+            <div class="brand-section">
+                <div class="logo-circle">
+                    <div style="width: 100px; height: 100px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: 700; color: var(--primary-pink);">
+                        CC
+                    </div>
+                </div>
+                <h1 class="brand-name">Cat Café</h1>
+                <p class="brand-tagline">Your cozy corner with purr-fect company</p>
+            </div>
+            
+            <div class="features-preview">
+                <div class="feature-item">
+                    <div class="feature-icon">C</div>
+                    <p>Meet friendly feline residents</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">A</div>
+                    <p>Premium coffee and treats</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">T</div>
+                    <p>Fun cat-themed games</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Forms -->
+        <div class="login-right">
+            <div class="form-container">
+                <!-- Login Form -->
+                <div class="form-wrapper active" id="loginForm">
+                    <h2 class="form-title">Welcome Back</h2>
+                    <p class="form-subtitle">Sign in to continue to Cat Café</p>
+                    
+                    <form onsubmit="handleLogin(event)">
+                        <div class="input-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="Enter your password">
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="remember">
+                                <span>Remember me</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Sign In</button>
+                    </form>
+                    
+                    <div class="form-divider">
+                        <span>or</span>
+                    </div>
+                    
+                    <button type="button" class="btn-guest" onclick="guestLogin()">Continue as Guest</button>
+                    
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="#" class="link-text-bold" onclick="switchForm('signup'); return false;">Sign up</a></p>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="form-wrapper" id="signupForm">
+                    <h2 class="form-title">Create Account</h2>
+                    <p class="form-subtitle">Join us at Cat Café today</p>
+                    
+                    <form onsubmit="handleSignup(event)">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" required placeholder="John">
+                            </div>
+                            <div class="input-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Doe">
+                            </div>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signupEmail">Email</label>
+                            <input type="email" id="signupEmail" name="email" required placeholder="your@email.com">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" name="password" required placeholder="At least 6 characters">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Re-enter password">
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span>I agree to the <a href="#" class="link-text">Terms & Conditions</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="#" class="link-text-bold" onclick="switchForm('login'); return false;">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>
+
