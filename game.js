@@ -10,8 +10,8 @@ let gameState = {
     isProcessing: false
 };
 
-// Cat emojis for the game
-const catEmojis = ['😺', '😸', '😹', '😻', '😼', '😽', '🙀', '😿'];
+// Cat types for the game (using text labels instead of emojis)
+const catTypes = ['Orange', 'Tabby', 'Black', 'White', 'Calico', 'Siamese', 'Persian', 'Maine Coon'];
 
 // Initialize game
 document.addEventListener('DOMContentLoaded', function() {
@@ -39,7 +39,7 @@ function initializeGame() {
     }
 
     // Create card pairs
-    const cardPairs = [...catEmojis, ...catEmojis];
+    const cardPairs = [...catTypes, ...catTypes];
     gameState.cards = shuffleArray(cardPairs);
 
     // Render game board
@@ -78,7 +78,7 @@ function createCard(emoji, index) {
     card.dataset.emoji = emoji;
 
     card.innerHTML = `
-        <div class="card-front">🐱</div>
+        <div class="card-front">?</div>
         <div class="card-back">${emoji}</div>
     `;
 
@@ -128,7 +128,7 @@ function checkForMatch() {
             updateStats();
 
             // Check if game is won
-            if (gameState.matchedPairs === catEmojis.length) {
+            if (gameState.matchedPairs === catTypes.length) {
                 setTimeout(showWinModal, 500);
             }
         }, 500);
@@ -171,15 +171,15 @@ function updateTimerDisplay() {
 function updateStats() {
     document.getElementById('moves').textContent = gameState.moves;
     document.getElementById('matches').textContent = 
-        `${gameState.matchedPairs} / ${catEmojis.length}`;
+        `${gameState.matchedPairs} / ${catTypes.length}`;
     
     // Update hint button
     const hintBtn = document.getElementById('hint-btn');
     if (gameState.hintsRemaining > 0) {
-        hintBtn.textContent = `💡 Hint (${gameState.hintsRemaining})`;
+        hintBtn.textContent = `Hint (${gameState.hintsRemaining})`;
         hintBtn.disabled = false;
     } else {
-        hintBtn.textContent = '💡 No Hints';
+        hintBtn.textContent = 'No Hints';
         hintBtn.disabled = true;
     }
 }

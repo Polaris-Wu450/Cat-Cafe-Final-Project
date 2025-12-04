@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cat Memory Game - Cat Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/game.css">
 </head>
@@ -11,8 +14,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <span class="logo">🐱</span>
-                <span>Cat Café</span>
+                <span class="logo">Cat Café</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="home.html">Home</a></li>
@@ -21,7 +23,7 @@
                 <li><a href="cats.html">Our Cats</a></li>
                 <li><a href="game.html" class="active">Game</a></li>
                 <li><a href="cart.html" class="cart-link">
-                    🛒 Cart <span id="cart-count" class="cart-badge">0</span>
+                    Cart <span id="cart-count" class="cart-badge">0</span>
                 </a></li>
             </ul>
         </div>
@@ -29,7 +31,7 @@
 
     <main class="container">
         <section class="game-header">
-            <h1>🐱 Cat Memory Game 🐾</h1>
+            <h1>Cat Memory Game</h1>
             <p>Match all the cute cat pairs!</p>
         </section>
 
@@ -53,8 +55,8 @@
         </div>
 
         <div class="game-controls">
-            <button class="btn-reset" onclick="resetGame()">🔄 New Game</button>
-            <button class="btn-hint" onclick="showHint()" id="hint-btn">💡 Hint</button>
+            <button class="btn-reset" onclick="resetGame()">New Game</button>
+            <button class="btn-hint" onclick="showHint()" id="hint-btn">Hint</button>
         </div>
 
         <div class="game-instructions">
@@ -71,11 +73,11 @@
     <!-- Win Modal -->
     <div class="modal" id="win-modal">
         <div class="modal-content">
-            <h2>🎉 Congratulations! 🎉</h2>
+            <h2>Congratulations!</h2>
             <p>You matched all the cats!</p>
             <div class="win-stats">
-                <p>⏱️ Time: <span id="final-time"></span></p>
-                <p>🔄 Moves: <span id="final-moves"></span></p>
+                <p>Time: <span id="final-time"></span></p>
+                <p>Moves: <span id="final-moves"></span></p>
             </div>
             <button class="btn-modal" onclick="closeModal()">Play Again</button>
         </div>
@@ -83,7 +85,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Cat Café. Made with 💕 and 🐾</p>
+            <p>&copy; 2025 Cat Café. Made with love and care.</p>
         </div>
     </footer>
 

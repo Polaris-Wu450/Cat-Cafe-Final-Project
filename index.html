@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Café - Welcome</title>
+    <script>
+        // Check if user is already logged in
+        (function() {
+            const user = localStorage.getItem('catCafeUser') || sessionStorage.getItem('catCafeUser');
+            if (user) {
+                window.location.href = 'home.html';
+            } else {
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
+

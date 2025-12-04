@@ -46,7 +46,7 @@ function handleLogin(event) {
     }
     
     // Show success message and redirect
-    showNotification('Login successful! Welcome back 🐱', 'success');
+    showNotification('Login successful! Welcome back!', 'success');
     setTimeout(() => {
         window.location.href = 'home.html';
     }, 1000);
@@ -98,7 +98,7 @@ function handleSignup(event) {
     sessionStorage.setItem('catCafeUser', JSON.stringify(user));
     
     // Show success message and redirect
-    showNotification('Account created successfully! Welcome to Cat Café 🎉', 'success');
+    showNotification('Account created successfully! Welcome to Cat Café!', 'success');
     setTimeout(() => {
         window.location.href = 'home.html';
     }, 1000);
@@ -117,7 +117,7 @@ function guestLogin() {
     sessionStorage.setItem('catCafeUser', JSON.stringify(guestUser));
     
     // Show success message and redirect
-    showNotification('Welcome, Guest! Enjoy your visit 🐾', 'success');
+    showNotification('Welcome, Guest! Enjoy your visit!', 'success');
     setTimeout(() => {
         window.location.href = 'home.html';
     }, 800);
@@ -183,9 +183,21 @@ function showNotification(message, type = 'success') {
 
 // Check if user is already logged in
 document.addEventListener('DOMContentLoaded', function() {
-    const user = localStorage.getItem('catCafeUser') || sessionStorage.getItem('catCafeUser');
-    if (user) {
-        // User is already logged in, redirect to home
+    const localUser = localStorage.getItem('catCafeUser');
+    const sessionUser = sessionStorage.getItem('catCafeUser');
+    
+    let user = null;
+    if (localUser) {
+        user = JSON.parse(localUser);
+    } else if (sessionUser) {
+        user = JSON.parse(sessionUser);
+    }
+    
+    // Only redirect if user is logged in AND not a guest
+    // Guests should be able to access login page to create a full account
+    if (user && !user.isGuest) {
+        // User is already logged in with a full account, redirect to home
         window.location.href = 'home.html';
     }
+    // If user is guest or no user, stay on login page
 });

@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - Cat Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/cart.css">
 </head>
@@ -11,8 +14,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-brand">
-                <span class="logo">🐱</span>
-                <span>Cat Café</span>
+                <span class="logo">Cat Café</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="home.html">Home</a></li>
@@ -21,7 +23,7 @@
                 <li><a href="cats.html">Our Cats</a></li>
                 <li><a href="game.html">Game</a></li>
                 <li><a href="cart.html" class="cart-link active">
-                    🛒 Cart <span id="cart-count" class="cart-badge">0</span>
+                    Cart <span id="cart-count" class="cart-badge">0</span>
                 </a></li>
             </ul>
         </div>
@@ -54,17 +56,17 @@
                 </div>
                 
                 <button class="checkout-btn" onclick="checkout()">
-                    Proceed to Checkout 💳
+                    Proceed to Checkout
                 </button>
                 <button class="clear-cart-btn" onclick="clearCart()">
-                    Clear Cart 🗑️
+                    Clear Cart
                 </button>
             </div>
         </div>
 
         <div class="empty-cart" id="empty-cart" style="display: none;">
             <div class="empty-cart-content">
-                <span class="empty-cart-icon">🛒</span>
+                <div class="empty-cart-icon">Cart</div>
                 <h2>Your cart is empty</h2>
                 <p>Add some delicious items from our menu!</p>
                 <a href="menu.html" class="btn-primary">Browse Menu</a>
@@ -74,7 +76,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Cat Café. Made with 💕 and 🐾</p>
+            <p>&copy; 2025 Cat Café. Made with love and care.</p>
         </div>
     </footer>
 
