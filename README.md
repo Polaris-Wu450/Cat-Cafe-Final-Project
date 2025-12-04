@@ -4,42 +4,14 @@
 A cute and functional cat café website featuring responsive design, interactive JavaScript features, shopping cart functionality, and a memory game.
 
 ## Team Members
-- **Polaris Wu** - HTML structure, MySQL planning, backend integration
-- **Zara Yang** - CSS styling, responsive design
-- **Helen Ji** - JavaScript interactivity, game development
+- **[Polaris Wu](https://github.com/Polaris-Wu450)** - HTML structure, MySQL planning, backend integration
+- **[Zara Yang](https://github.com/Zara252)** - CSS styling, responsive design
+- **[Helen Ji](https://github.com/Helen-Ji)** - JavaScript interactivity, game development
 
-## Project Requirements Checklist
-
-### Stage 1: Client-Side Design and Interactivity (Due 12/5)
-
-#### 1. HTML & CSS
-- [x] Responsive design (mobile, tablet, desktop)
-- [x] Professional and cute aesthetic
-- [x] Semantic HTML structure
-- [x] Clean CSS organization
-
-#### 2. Interactive JavaScript Features
-- [x] Shopping cart with add/remove functionality
-- [x] Shopping cart validation
-- [x] Quantity controls (increase/decrease)
-- [x] Local storage for cart persistence
-- [x] Real-time cart count updates
-
-#### 3. Featured Game
-- [x] Cat Memory Matching Game
-- [x] Similar difficulty to memory game requirement
-- [x] Timer and move counter
-- [x] Win detection and modal
-- [x] Hint system
-
-#### 4. Hosting
-- [ ] Deploy to i6 server
-- [ ] Provide team member URLs
-
-## 📁 File Structure
+## File Structure
 
 ```
-Final Project/
+Cat-Cafe-Final-Project/
 ├── home.html              # Landing page
 ├── menu.html              # Menu with items
 ├── cart.html              # Shopping cart
@@ -57,7 +29,7 @@ Final Project/
 └── game.js                # Game logic
 ```
 
-## 🛠️ Features Implemented
+## Features Implemented
 
 ### 1. Navigation System
 - Sticky navigation bar
@@ -171,10 +143,3 @@ chmod 644 *.js
    - Manage menu items
    - View orders
    - Update cat profiles
-
-## Credits
-
-**Team Cat Café**
-- Polaris Wu - Backend & Structure
-- Zara Yang - Frontend Design
-- Helen Ji - JavaScript & Interactivity
