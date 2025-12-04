@@ -1,0 +1,358 @@
+/* Game Header */
+.game-header {
+    text-align: center;
+    padding: 2rem 0 1rem;
+}
+
+.game-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.game-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+}
+
+/* Game Stats */
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+/* Game Board */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+/* Game Card */
+.game-card {
+    aspect-ratio: 1;
+    background: white;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+}
+
+.game-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.game-card.matched {
+    opacity: 0.6;
+    cursor: default;
+}
+
+.game-card.matched:hover {
+    transform: none;
+}
+
+/* Card Faces */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.card-front {
+    background: var(--primary-color);
+    color: white;
+    font-size: 3rem;
+}
+
+.card-back {
+    background: white;
+    font-size: 4rem;
+    transform: rotateY(180deg);
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.btn-reset,
+.btn-hint {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-reset {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-reset:hover {
+    background: #e09e8d;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(247, 181, 167, 0.4);
+}
+
+.btn-hint {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-hint:hover {
+    background: #8fc9dc;
+    transform: translateY(-2px);
+}
+
+.btn-hint:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Game Instructions */
+.game-instructions {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.game-instructions h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.game-instructions ul {
+    list-style: none;
+    padding: 0;
+}
+
+.game-instructions li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.game-instructions li:before {
+    content: "🐾";
+    position: absolute;
+    left: 0;
+}
+
+/* Win Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 400px;
+    animation: slideUp 0.5s ease;
+}
+
+.modal-content h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.win-stats {
+    background: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.win-stats p {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    margin: 0.5rem 0;
+}
+
+.win-stats span {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.btn-modal {
+    padding: 1rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-modal:hover {
+    background: #e09e8d;
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.pulse {
+    animation: pulse 1s;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-header h1 {
+        font-size: 2rem;
+    }
+
+    .game-stats {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .game-board {
+        gap: 0.8rem;
+        padding: 0.5rem;
+    }
+
+    .card-front,
+    .card-back {
+        font-size: 2.5rem;
+    }
+
+    .game-controls {
+        flex-direction: column;
+        max-width: 300px;
+        margin: 2rem auto;
+    }
+
+    .btn-reset,
+    .btn-hint {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 100%;
+    }
+
+    .card-front,
+    .card-back {
+        font-size: 2rem;
+    }
+
+    .modal-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Cat Café</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/menu.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="logo">🐱</span>
+                <span>Cat Café</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="reservation.html">Reservations</a></li>
+                <li><a href="cats.html">Our Cats</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="cart.html" class="cart-link">
+                    🛒 Cart <span id="cart-count" class="cart-badge">0</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="menu-header">
+            <h1>Our Menu</h1>
+            <p>Delicious treats for you and your feline friends!</p>
+        </section>
+
+        <div class="menu-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="drinks">Drinks</button>
+            <button class="filter-btn" data-category="food">Food</button>
+            <button class="filter-btn" data-category="desserts">Desserts</button>
+            <button class="filter-btn" data-category="cat-treats">Cat Treats</button>
+        </div>
+
+        <div class="menu-grid" id="menu-items">
+            <!-- Menu items will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Cat Café. Made with 💕 and 🐾</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="menu.js"></script>
+</body>
+</html>
