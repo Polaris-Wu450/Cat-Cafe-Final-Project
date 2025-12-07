@@ -6,7 +6,7 @@
 
 .game-header h1 {
     font-size: 2.5rem;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
     margin-bottom: 0.5rem;
 }
 
@@ -43,7 +43,7 @@
     display: block;
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
 }
 
 /* Game Board */
@@ -99,7 +99,7 @@
 }
 
 .card-front {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
     font-size: 3rem;
     font-weight: 700;
@@ -111,7 +111,7 @@
     font-weight: 600;
     color: var(--text-dark);
     transform: rotateY(180deg);
-    border: 2px solid var(--primary-pink);
+    border: 2px solid var(--primary-brown);
 }
 
 /* Game Controls */
@@ -134,7 +134,7 @@
 }
 
 .btn-reset {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
@@ -145,12 +145,12 @@
 }
 
 .btn-hint {
-    background: var(--accent-lavender);
+    background: var(--accent-gold);
     color: var(--white);
 }
 
 .btn-hint:hover {
-    background: var(--accent-mint);
+    background: var(--accent-warm);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -172,7 +172,7 @@
 }
 
 .game-instructions h3 {
-    color: var(--primary-pink);
+    color: var(--primary-brown);
     margin-bottom: 1rem;
 }
 
@@ -191,7 +191,7 @@
     content: "•";
     position: absolute;
     left: 0;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -226,7 +226,7 @@
 
 .modal-content h2 {
     font-size: 2rem;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
     margin-bottom: 1rem;
 }
 
@@ -237,7 +237,7 @@
 }
 
 .win-stats {
-    background: var(--secondary-peach);
+    background: var(--secondary-cream);
     padding: 1.5rem;
     border-radius: var(--radius-sm);
     margin-bottom: 1.5rem;
@@ -251,12 +251,12 @@
 
 .win-stats span {
     font-weight: 700;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
 }
 
 .btn-modal {
     padding: 1rem 2rem;
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
     border: none;
     border-radius: var(--radius-md);

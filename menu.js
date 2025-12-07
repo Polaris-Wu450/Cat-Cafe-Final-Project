@@ -28,8 +28,136 @@ const menuItems = [
 document.addEventListener('DOMContentLoaded', function() {
     displayMenuItems();
     initFilterButtons();
+    initSearch();
     updateCartCount();
 });
+
+// Initialize search functionality
+function initSearch() {
+    const searchInput = document.getElementById('menu-search-input');
+    if (!searchInput) return;
+    
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value.trim();
+        
+        if (query.length >= 2) {
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        } else if (query.length === 0) {
+            // Reset to show all items
+            const activeCategory = document.querySelector('.filter-btn.active')?.dataset.category || 'all';
+            displayMenuItems(activeCategory);
+        }
+    });
+}
+
+// Perform search using PHP backend
+function performSearch(query) {
+    const activeCategory = document.querySelector('.filter-btn.active')?.dataset.category || 'all';
+    
+    $.ajax({
+        url: 'search.php',
+        method: 'GET',
+        data: {
+            q: query,
+            category: activeCategory === 'all' ? '' : activeCategory
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                displaySearchResults(response.items);
+            } else {
+                console.error('Search failed:', response.errors);
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Search error:', error);
+        }
+    });
+}
+
+// Display search results
+function displaySearchResults(items) {
+    const menuGrid = document.getElementById('menu-items');
+    menuGrid.innerHTML = '';
+    
+    if (items.length === 0) {
+        menuGrid.innerHTML = '<p class="no-items">No items found matching your search.</p>';
+        return;
+    }
+    
+    items.forEach(item => {
+        const menuItemCard = createMenuItemCardFromData(item);
+        menuGrid.appendChild(menuItemCard);
+    });
+}
+
+// Create menu item card from database data
+function createMenuItemCardFromData(item) {
+    const card = document.createElement('div');
+    card.className = 'menu-item-card';
+    card.dataset.category = item.category;
+    
+    // Get icon text (first letter or abbreviation)
+    let iconText = item.name.split(' ').map(word => word[0]).join('').substring(0, 4);
+    if (iconText === 'Sandwich') {
+        iconText = 'Sand\u00ADwich';
+    } else if (iconText === 'Dessert') {
+        iconText = 'Des\u00ADsert';
+    }
+    
+    card.innerHTML = `
+        <div class="menu-item-icon">${iconText}</div>
+        <div class="menu-item-info">
+            <h3 class="menu-item-name">${item.name}</h3>
+            <p class="menu-item-category">${item.category.replace('-', ' ')}</p>
+            <p class="menu-item-price">$${parseFloat(item.price).toFixed(2)}</p>
+        </div>
+        <button class="add-to-cart-btn" onclick="addItemToCartFromData(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${item.category}')">
+            Add to Cart
+        </button>
+    `;
+    
+    return card;
+}
+
+// Add item to cart from database data
+function addItemToCartFromData(id, name, price, category) {
+    const item = {
+        id: id,
+        name: name,
+        price: parseFloat(price),
+        category: category,
+        emoji: name.split(' ').map(word => word[0]).join('').substring(0, 4),
+        quantity: 1
+    };
+    
+    // Get current cart from localStorage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Check if item already exists in cart
+    const existingItem = cart.find(cartItem => cartItem.id === id);
+    
+    if (existingItem) {
+        // Increase quantity
+        existingItem.quantity += 1;
+    } else {
+        // Add new item
+        cart.push(item);
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Update cart count
+    updateCartCount();
+    
+    // Show feedback
+    showAddToCartFeedback(name);
+}
 
 // Display menu items
 function displayMenuItems(category = 'all') {

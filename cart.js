@@ -1,3 +1,16 @@
+// Get user session helper
+function getUserSession() {
+    const localUser = localStorage.getItem('catCafeUser');
+    const sessionUser = sessionStorage.getItem('catCafeUser');
+    
+    if (localUser) {
+        return JSON.parse(localUser);
+    } else if (sessionUser) {
+        return JSON.parse(sessionUser);
+    }
+    return null;
+}
+
 // Initialize cart page
 document.addEventListener('DOMContentLoaded', function() {
     displayCart();
@@ -35,9 +48,15 @@ function createCartItemElement(item) {
     itemDiv.className = 'cart-item';
     itemDiv.dataset.itemId = item.id;
 
+    // Generate icon text
+    let iconText = item.name.split(' ').map(word => word[0]).join('').substring(0, 4);
+    if (iconText.length === 0) {
+        iconText = item.name.charAt(0);
+    }
+    
     itemDiv.innerHTML = `
         <div class="cart-item-image">
-            <span>${item.emoji || item.name.charAt(0)}</span>
+            <span>${iconText}</span>
         </div>
         <div class="cart-item-details">
             <h3 class="cart-item-name">${item.name}</h3>
@@ -157,21 +176,64 @@ function checkout() {
     const tax = subtotal * 0.08;
     const total = subtotal + tax;
 
-    // Show confirmation with formatted message
-    const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const message = `Order Summary:\n\n${itemCount} item(s)\nSubtotal: $${subtotal.toFixed(2)}\nTax (8%): $${tax.toFixed(2)}\nTotal: $${total.toFixed(2)}\n\nProceed to checkout?`;
-
-    if (confirm(message)) {
-        // In a real application, this would redirect to payment page
-        alert('Thank you for your order!\n\nOrder confirmation will be sent to your email.');
-        localStorage.removeItem('cart');
-        displayCart();
-        updateCartCount();
-        // Redirect after a short delay
+    // Get current user
+    const user = getUserSession();
+    if (!user || user.isGuest) {
+        showValidationError('Please log in to complete your order.');
         setTimeout(() => {
-            window.location.href = 'home.html';
-        }, 500);
+            window.location.href = 'login.html';
+        }, 2000);
+        return;
     }
+    
+    // Show loading
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    const originalText = checkoutBtn.textContent;
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = 'Processing...';
+    
+    // Send to PHP backend
+    $.ajax({
+        url: 'cart.php',
+        method: 'POST',
+        data: {
+            userId: user.id,
+            items: JSON.stringify(cart),
+            subtotal: subtotal,
+            tax: tax,
+            total: total
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Store order info in sessionStorage for receipt page
+                sessionStorage.setItem('lastOrder', JSON.stringify({
+                    orderId: response.orderId,
+                    items: cart,
+                    subtotal: subtotal,
+                    tax: tax,
+                    total: total,
+                    date: new Date().toISOString()
+                }));
+                
+                // Clear cart
+                localStorage.removeItem('cart');
+                updateCartCount();
+                
+                // Redirect to receipt page
+                window.location.href = 'receipt.html?orderId=' + response.orderId;
+            } else {
+                showValidationError(response.errors[0] || 'Failed to place order. Please try again.');
+                checkoutBtn.disabled = false;
+                checkoutBtn.textContent = originalText;
+            }
+        },
+        error: function(xhr, status, error) {
+            showValidationError('An error occurred. Please try again.');
+            checkoutBtn.disabled = false;
+            checkoutBtn.textContent = originalText;
+        }
+    });
 }
 
 // Validate cart

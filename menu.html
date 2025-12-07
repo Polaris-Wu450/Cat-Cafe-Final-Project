@@ -19,9 +19,8 @@
             <ul class="nav-menu">
                 <li><a href="home.html">Home</a></li>
                 <li><a href="menu.html" class="active">Menu</a></li>
-                <li><a href="reservation.html">Reservations</a></li>
-                <li><a href="cats.html">Our Cats</a></li>
                 <li><a href="game.html">Game</a></li>
+                <li><a href="order-history.html">Order History</a></li>
                 <li><a href="cart.html" class="cart-link">
                     Cart <span id="cart-count" class="cart-badge">0</span>
                 </a></li>
@@ -35,6 +34,10 @@
             <p>Delicious treats for you and your feline friends!</p>
         </section>
 
+        <div class="menu-search">
+            <input type="text" id="menu-search-input" placeholder="Search menu items..." class="search-input">
+        </div>
+        
         <div class="menu-filter">
             <button class="filter-btn active" data-category="all">All</button>
             <button class="filter-btn" data-category="drinks">Drinks</button>
@@ -54,6 +57,7 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="main.js"></script>
     <script src="menu.js"></script>
 </body>

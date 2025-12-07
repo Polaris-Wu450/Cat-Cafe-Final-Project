@@ -2,26 +2,33 @@
    CSS Variables
    ================================ */
 :root {
-    --primary-pink: #FFB5C0;
-    --primary-dark: #FF8BA0;
-    --secondary-peach: #FFD4A3;
-    --accent-lavender: #D4C5F9;
-    --accent-mint: #C4F1BE;
-    --background-cream: #FFF8F3;
+    --primary-brown: #D9C5A8;
+    --primary-dark: #C4A882;
+    --primary-light: #E6D4B8;
+    --secondary-cream: #F5E6D3;
+    --accent-gold: #F0E4D0;
+    --accent-warm: #EBD9C5;
+    --background-cream: #FAF7F2;
     --white: #FFFFFF;
-    --text-dark: #4A4A4A;
-    --text-light: #8B8B8B;
-    --border-light: #F0E8E0;
+    --text-dark: #3D3D3D;
+    --text-light: #6B6B6B;
+    --border-light: #E8DDD0;
     
-    --shadow-sm: 0 2px 10px rgba(255, 181, 192, 0.15);
-    --shadow-md: 0 4px 20px rgba(255, 181, 192, 0.2);
-    --shadow-lg: 0 8px 30px rgba(255, 181, 192, 0.25);
+    --shadow-sm: 0 2px 10px rgba(217, 197, 168, 0.15);
+    --shadow-md: 0 4px 20px rgba(217, 197, 168, 0.2);
+    --shadow-lg: 0 8px 30px rgba(217, 197, 168, 0.25);
     
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 24px;
     
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Legacy color names for compatibility */
+    --primary-pink: var(--primary-brown);
+    --secondary-peach: var(--secondary-cream);
+    --accent-lavender: var(--accent-gold);
+    --accent-mint: var(--accent-warm);
 }
 
 /* ================================
@@ -130,7 +137,7 @@ button {
 }
 
 .nav-menu a.active {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
@@ -177,17 +184,17 @@ button {
 
 .nav-login-btn {
     background: var(--background-cream);
-    color: var(--primary-pink);
-    border: 2px solid var(--primary-pink);
+    color: var(--primary-brown);
+    border: 2px solid var(--primary-brown);
 }
 
 .nav-login-btn:hover {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
 .nav-logout-btn {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
@@ -218,7 +225,7 @@ button {
 }
 
 .cart-btn:hover {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
@@ -238,7 +245,7 @@ button {
 
 .logout-btn {
     padding: 10px 20px;
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
     border-radius: var(--radius-sm);
     font-weight: 600;
@@ -273,7 +280,7 @@ button {
     position: relative;
     padding: 80px 0;
     overflow: hidden;
-    background: linear-gradient(135deg, #FFF8F3 0%, #FFE8F0 100%);
+    background: linear-gradient(135deg, #FAF7F2 0%, #F5E6D3 100%);
 }
 
 .hero-bg {
@@ -283,26 +290,19 @@ button {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 181, 192, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 212, 163, 0.1) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(217, 197, 168, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(240, 228, 208, 0.1) 0%, transparent 50%);
     pointer-events: none;
 }
 
 .hero-content {
     position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
 }
 
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 24px;
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-pink) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text-dark);
 }
 
 .hero-description {
@@ -365,7 +365,7 @@ button {
     width: 180px;
     height: 180px;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--primary-pink) 100%);
+    background: linear-gradient(135deg, var(--secondary-cream) 0%, var(--primary-brown) 100%);
 }
 
 .card-1 {
@@ -408,7 +408,7 @@ button {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     color: var(--white);
     box-shadow: var(--shadow-sm);
 }
@@ -421,11 +421,11 @@ button {
 .btn-secondary {
     background: var(--white);
     color: var(--primary-dark);
-    border: 2px solid var(--primary-pink);
+    border: 2px solid var(--primary-brown);
 }
 
 .btn-secondary:hover {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
 }
 
@@ -478,7 +478,7 @@ button {
     width: 80px;
     height: 80px;
     margin: 0 auto 24px;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -519,7 +519,7 @@ button {
     width: 80px;
     height: 80px;
     margin: 0 auto 24px;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -569,7 +569,7 @@ button {
     width: 80px;
     height: 80px;
     margin: 0 auto 1rem;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -587,7 +587,7 @@ button {
 .item-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
 }
 
 .about {
@@ -617,7 +617,7 @@ button {
 .hero-placeholder {
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--primary-pink) 100%);
+    background: linear-gradient(135deg, var(--secondary-cream) 0%, var(--primary-brown) 100%);
     border-radius: var(--radius-lg);
     display: flex;
     align-items: center;
@@ -637,7 +637,7 @@ button {
 
 .cta {
     padding: 80px 0;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     color: var(--white);
     text-align: center;
 }
@@ -712,7 +712,7 @@ button {
 }
 
 .footer-section a:hover {
-    color: var(--primary-pink);
+    color: var(--accent-gold);
 }
 
 .footer-bottom {

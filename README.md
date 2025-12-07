@@ -18,8 +18,6 @@ Cat-Cafe-Final-Project/
 ├── menu.html              # Menu with items
 ├── cart.html              # Shopping cart
 ├── game.html              # Memory game
-├── reservation.html       # (To be created)
-├── cats.html              # (To be created)
 ├── styles/
 │   ├── main.css          # Global styles and variables
 │   ├── login.css         # Login page styles
@@ -28,9 +26,16 @@ Cat-Cafe-Final-Project/
 │   └── game.css          # Game page styles
 ├── main.js                # Global JavaScript (auth, cart, utilities)
 ├── login.js               # Login and registration functionality
-├── menu.js                # Menu functionality
+├── menu.js                # Menu functionality with search
 ├── cart.js                # Cart functionality
-└── game.js                # Game logic
+├── game.js                # Game logic
+├── PHP Backend/
+│   ├── init_db.php       # Database initialization
+│   ├── signup.php        # User registration (SQLite3)
+│   ├── login.php         # User authentication (SQLite3)
+│   ├── cart.php          # Order processing (SQLite3)
+│   └── search.php        # Menu search (SQLite3)
+└── cat_cafe.db           # SQLite3 database (created after init)
 ```
 
 ## Features Implemented
@@ -153,25 +158,39 @@ chmod 644 *.js
 - Clean, emoji-free design
 - Accessible color contrasts
 
-## Future Enhancements (Stage 2)
+## Backend Integration (PHP + SQLite3)
 
-### Backend Features to Add:
-1. **User Authentication**
-   - Login/Registration system
-   - Session management
-   - User profiles
+### Database Setup
 
-2. **Database Integration**
-   - MySQL for menu items
-   - Order history storage
-   - User preferences
+#### Local Development
+1. **First time only**: Run `php init_db.php` to initialize the SQLite3 database
+   - This creates `cat_cafe.db` with tables: `users`, `orders`, `menu_items`
+   - **Note**: You only need to run this once. If `cat_cafe.db` already exists, you can skip this step.
+2. After database is created, you only need to run: `php -S localhost:8000`
 
-3. **Reservation System**
-   - Date/time picker
-   - Availability checking
-   - Confirmation emails
+#### Server Deployment (i6)
+1. Upload `cat_cafe.db` to the `databases/` directory on the server
+2. **Note**: `init_db.php` is **not required** for deployment if the database file already exists
+   - You can keep it as a backup/utility script, but it's not needed for normal operation
+3. Ensure the `databases/` directory has proper write permissions if you need to create new tables
 
-4. **Admin Panel**
-   - Manage menu items
-   - View orders
-   - Update cat profiles
+### PHP Scripts
+All PHP scripts use SQLite3 for data storage:
+
+1. **signup.php** - User registration with password hashing
+2. **login.php** - User authentication with password verification
+3. **cart.php** - Stores shopping cart orders in database
+4. **search.php** - Searches menu items from database
+
+### JavaScript Validation
+- All forms validate data client-side before sending to PHP
+- Uses jQuery for AJAX calls to PHP backend
+- Real-time validation feedback
+
+### Security Features
+- Password hashing using `password_hash()`
+- SQL injection prevention with prepared statements
+- Input validation on both client and server side
+- Email uniqueness enforcement
+
+See `README_PHP.md` for detailed API documentation.
