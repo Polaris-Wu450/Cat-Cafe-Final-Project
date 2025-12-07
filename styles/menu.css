@@ -6,13 +6,36 @@
 
 .menu-header h1 {
     font-size: 2.5rem;
-    color: var(--primary-pink);
+    color: var(--primary-brown);
     margin-bottom: 0.5rem;
 }
 
 .menu-header p {
     font-size: 1.1rem;
     color: var(--text-light);
+}
+
+/* Menu Search */
+.menu-search {
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    border: 2px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-brown);
+    box-shadow: 0 0 0 4px rgba(217, 197, 168, 0.1);
 }
 
 /* Menu Filter */
@@ -36,15 +59,15 @@
 }
 
 .filter-btn:hover {
-    border-color: var(--primary-pink);
-    color: var(--primary-pink);
+    border-color: var(--primary-brown);
+    color: var(--primary-brown);
     transform: translateY(-2px);
 }
 
 .filter-btn.active {
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
-    border-color: var(--primary-pink);
+    border-color: var(--primary-brown);
 }
 
 /* Menu Grid */
@@ -78,7 +101,7 @@
 .menu-item-icon {
     width: 70px;
     height: 70px;
-    background: linear-gradient(135deg, var(--primary-pink) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
     border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
@@ -131,13 +154,13 @@
 .menu-item-price {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-dark);
+    color: var(--primary-brown);
 }
 
 .add-to-cart-btn {
     width: 100%;
     padding: 0.875rem 1.5rem;
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
     border: none;
     border-radius: var(--radius-sm);
@@ -172,7 +195,7 @@
     position: fixed;
     top: 100px;
     right: 20px;
-    background: var(--primary-pink);
+    background: var(--primary-brown);
     color: var(--white);
     padding: 1rem 1.5rem;
     border-radius: var(--radius-sm);
