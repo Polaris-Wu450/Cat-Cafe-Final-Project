@@ -20,10 +20,6 @@ function checkAuth() {
         return;
     }
     
-    // Pages that require full login (not guest)
-    const restrictedPages = ['reservation.html', 'cats.html'];
-    const requiresFullLogin = restrictedPages.includes(currentPage);
-    
     // Check for user session
     const user = getUserSession();
     if (!user) {
@@ -31,119 +27,6 @@ function checkAuth() {
         window.location.href = 'login.html';
         return;
     }
-    
-    // Check if guest user trying to access restricted pages
-    if (requiresFullLogin && user.isGuest) {
-        showLoginRequiredMessage();
-        // Don't auto-redirect, let user choose
-    }
-}
-
-// Show login required message
-function showLoginRequiredMessage() {
-    const message = document.createElement('div');
-    message.className = 'login-required-message';
-    message.innerHTML = `
-        <div class="login-required-content">
-            <h2>Login Required</h2>
-            <p>This page requires a full account. Please log in to continue.</p>
-            <p>Make your choice:</p>
-            <div class="login-required-buttons">
-                <a href="login.html" class="btn-primary" onclick="window.location.href='login.html'; return false;">Login / Sign Up</a>
-                <a href="home.html" class="btn-secondary" onclick="window.location.href='home.html'; return false;">Go to Home</a>
-            </div>
-        </div>
-    `;
-    message.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        animation: fadeIn 0.3s ease;
-    `;
-    
-    // Add styles if not present
-    if (!document.getElementById('login-required-styles')) {
-        const style = document.createElement('style');
-        style.id = 'login-required-styles';
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            .login-required-content {
-                background: var(--white);
-                padding: 3rem;
-                border-radius: var(--radius-lg);
-                max-width: 500px;
-                text-align: center;
-                box-shadow: var(--shadow-lg);
-                animation: slideUp 0.5s ease;
-            }
-            @keyframes slideUp {
-                from {
-                    transform: translateY(50px);
-                    opacity: 0;
-                }
-                to {
-                    transform: translateY(0);
-                    opacity: 1;
-                }
-            }
-            .login-required-content h2 {
-                color: var(--primary-pink);
-                margin-bottom: 1rem;
-                font-size: 2rem;
-            }
-            .login-required-content p {
-                color: var(--text-light);
-                margin-bottom: 1rem;
-                font-size: 1.1rem;
-            }
-            .login-required-buttons {
-                display: flex;
-                gap: 1rem;
-                margin-top: 2rem;
-                justify-content: center;
-            }
-            .login-required-buttons .btn-primary,
-            .login-required-buttons .btn-secondary {
-                padding: 0.875rem 2rem;
-                border-radius: var(--radius-sm);
-                text-decoration: none;
-                font-weight: 600;
-                transition: var(--transition);
-                display: inline-block;
-                cursor: pointer;
-            }
-            .login-required-buttons .btn-primary {
-                background: var(--primary-pink);
-                color: var(--white);
-            }
-            .login-required-buttons .btn-primary:hover {
-                background: var(--primary-dark);
-                transform: translateY(-2px);
-            }
-            .login-required-buttons .btn-secondary {
-                background: var(--white);
-                color: var(--primary-pink);
-                border: 2px solid var(--primary-pink);
-            }
-            .login-required-buttons .btn-secondary:hover {
-                background: var(--primary-pink);
-                color: var(--white);
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    document.body.appendChild(message);
 }
 
 // Get user session

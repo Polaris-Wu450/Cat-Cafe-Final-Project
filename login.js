@@ -20,57 +20,23 @@ function switchForm(formType) {
 function handleLogin(event) {
     event.preventDefault();
     
-    const email = document.getElementById('loginEmail').value;
+    const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
     const remember = document.querySelector('input[name="remember"]').checked;
     
-    // Basic validation
-    if (!email || !password) {
-        showNotification('Please fill in all fields', 'error');
+    // JavaScript validation before sending to PHP
+    if (!email) {
+        showNotification('Email is required', 'error');
         return;
     }
     
-    // For Stage 1, we'll just store user info and redirect
-    // In Stage 2, this will make an API call to authenticate
-    const user = {
-        email: email,
-        isGuest: false,
-        loginTime: new Date().toISOString()
-    };
-    
-    // Store user session
-    if (remember) {
-        localStorage.setItem('catCafeUser', JSON.stringify(user));
-    } else {
-        sessionStorage.setItem('catCafeUser', JSON.stringify(user));
-    }
-    
-    // Show success message and redirect
-    showNotification('Login successful! Welcome back!', 'success');
-    setTimeout(() => {
-        window.location.href = 'home.html';
-    }, 1000);
-}
-
-// Handle signup form submission
-function handleSignup(event) {
-    event.preventDefault();
-    
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const termsAccepted = document.querySelector('input[name="terms"]').checked;
-    
-    // Validation
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-        showNotification('Please fill in all fields', 'error');
+    if (!validateEmail(email)) {
+        showNotification('Please enter a valid email address', 'error');
         return;
     }
     
-    if (password !== confirmPassword) {
-        showNotification('Passwords do not match', 'error');
+    if (!password) {
+        showNotification('Password is required', 'error');
         return;
     }
     
@@ -79,29 +45,219 @@ function handleSignup(event) {
         return;
     }
     
+    // Show loading state
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+    
+    // Send to PHP backend
+    $.ajax({
+        url: 'login.php',
+        method: 'POST',
+        data: {
+            email: email,
+            password: password
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Store user session
+                const user = {
+                    id: response.user.id,
+                    firstName: response.user.firstName,
+                    lastName: response.user.lastName,
+                    email: response.user.email,
+                    isGuest: false,
+                    loginTime: new Date().toISOString()
+                };
+                
+                if (remember) {
+                    localStorage.setItem('catCafeUser', JSON.stringify(user));
+                } else {
+                    sessionStorage.setItem('catCafeUser', JSON.stringify(user));
+                }
+                
+                showNotification('Login successful! Welcome back!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1000);
+            } else {
+                showNotification(response.errors[0] || 'Login failed', 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        },
+        error: function(xhr, status, error) {
+            let errorMessage = 'An error occurred. Please try again.';
+            
+            // Try to parse error response
+            if (xhr.responseText) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.errors && response.errors.length > 0) {
+                        errorMessage = response.errors[0];
+                    } else if (response.error) {
+                        errorMessage = response.error;
+                    }
+                } catch (e) {
+                    // If not JSON, show raw response or status
+                    if (xhr.status === 0) {
+                        errorMessage = 'Cannot connect to server. Please check if PHP is running and database is initialized.';
+                    } else if (xhr.status === 404) {
+                        errorMessage = 'Server file not found. Please check PHP file exists.';
+                    } else {
+                        errorMessage = 'Server error: ' + xhr.status + ' ' + xhr.statusText;
+                    }
+                }
+            }
+            
+            showNotification(errorMessage, 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
+}
+
+// Email validation helper
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Handle signup form submission
+function handleSignup(event) {
+    event.preventDefault();
+    
+    const firstName = document.getElementById('firstName').value.trim();
+    const lastName = document.getElementById('lastName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const termsAccepted = document.querySelector('input[name="terms"]').checked;
+    
+    // JavaScript validation before sending to PHP
+    if (!firstName) {
+        showNotification('First name is required', 'error');
+        return;
+    }
+    
+    if (firstName.length < 2) {
+        showNotification('First name must be at least 2 characters', 'error');
+        return;
+    }
+    
+    if (!lastName) {
+        showNotification('Last name is required', 'error');
+        return;
+    }
+    
+    if (lastName.length < 2) {
+        showNotification('Last name must be at least 2 characters', 'error');
+        return;
+    }
+    
+    if (!email) {
+        showNotification('Email is required', 'error');
+        return;
+    }
+    
+    if (!validateEmail(email)) {
+        showNotification('Please enter a valid email address', 'error');
+        return;
+    }
+    
+    if (!password) {
+        showNotification('Password is required', 'error');
+        return;
+    }
+    
+    if (password.length < 6) {
+        showNotification('Password must be at least 6 characters', 'error');
+        return;
+    }
+    
+    if (password !== confirmPassword) {
+        showNotification('Passwords do not match', 'error');
+        return;
+    }
+    
     if (!termsAccepted) {
         showNotification('Please accept the terms and conditions', 'error');
         return;
     }
     
-    // For Stage 1, we'll just store user info and redirect
-    // In Stage 2, this will make an API call to create account
-    const user = {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        isGuest: false,
-        signupTime: new Date().toISOString()
-    };
+    // Show loading state
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
     
-    // Store user session
-    sessionStorage.setItem('catCafeUser', JSON.stringify(user));
-    
-    // Show success message and redirect
-    showNotification('Account created successfully! Welcome to Cat Café!', 'success');
-    setTimeout(() => {
-        window.location.href = 'home.html';
-    }, 1000);
+    // Send to PHP backend
+    $.ajax({
+        url: 'signup.php',
+        method: 'POST',
+        data: {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword
+        },
+        dataType: 'json',
+        success: function(response) {
+            if (response.success) {
+                // Store user session
+                const user = {
+                    id: response.user.id,
+                    firstName: response.user.firstName,
+                    lastName: response.user.lastName,
+                    email: response.user.email,
+                    isGuest: false,
+                    signupTime: new Date().toISOString()
+                };
+                
+                sessionStorage.setItem('catCafeUser', JSON.stringify(user));
+                
+                showNotification('Account created successfully! Welcome to Cat Café!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'home.html';
+                }, 1000);
+            } else {
+                showNotification(response.errors[0] || 'Signup failed', 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        },
+        error: function(xhr, status, error) {
+            let errorMessage = 'An error occurred. Please try again.';
+            
+            // Try to parse error response
+            if (xhr.responseText) {
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.errors && response.errors.length > 0) {
+                        errorMessage = response.errors[0];
+                    } else if (response.error) {
+                        errorMessage = response.error;
+                    }
+                } catch (e) {
+                    // If not JSON, show raw response or status
+                    if (xhr.status === 0) {
+                        errorMessage = 'Cannot connect to server. Please check if PHP is running and database is initialized.';
+                    } else if (xhr.status === 404) {
+                        errorMessage = 'Server file not found. Please check PHP file exists.';
+                    } else {
+                        errorMessage = 'Server error: ' + xhr.status + ' ' + xhr.statusText;
+                    }
+                }
+            }
+            
+            showNotification(errorMessage, 'error');
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+        }
+    });
 }
 
 // Guest login
