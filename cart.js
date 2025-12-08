@@ -48,9 +48,9 @@ function createCartItemElement(item) {
     itemDiv.className = 'cart-item';
     itemDiv.dataset.itemId = item.id;
 
-    // Generate icon text
-    let iconText = item.name.split(' ').map(word => word[0]).join('').substring(0, 4);
-    if (iconText.length === 0) {
+    // Use emoji if available, otherwise generate icon text
+    let iconText = item.emoji || item.name.split(' ').map(word => word[0]).join('').substring(0, 4);
+    if (!item.emoji && iconText.length === 0) {
         iconText = item.name.charAt(0);
     }
     
@@ -115,22 +115,18 @@ function decreaseQuantity(itemId) {
 
 // Remove from cart
 function removeFromCart(itemId) {
-    if (confirm('Remove this item from cart?')) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart = cart.filter(item => item.id !== itemId);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        displayCart();
-        updateCartCount();
-    }
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart = cart.filter(item => item.id !== itemId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    displayCart();
+    updateCartCount();
 }
 
 // Clear entire cart
 function clearCart() {
-    if (confirm('Are you sure you want to clear your cart?')) {
-        localStorage.removeItem('cart');
-        displayCart();
-        updateCartCount();
-    }
+    localStorage.removeItem('cart');
+    displayCart();
+    updateCartCount();
 }
 
 // Update order summary
