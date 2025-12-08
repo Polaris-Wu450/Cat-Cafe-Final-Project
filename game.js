@@ -10,8 +10,18 @@ let gameState = {
     isProcessing: false
 };
 
-// Cat types for the game (using text labels instead of emojis)
-const catTypes = ['Orange', 'Tabby', 'Black', 'White', 'Calico', 'Siamese', 'Persian', 'Maine Coon'];
+// Cat types for the game (now using different cat emojis)
+const catTypes = [
+    '🐱', // default cat face
+    '😺', // smiling cat
+    '😸', // grinning cat
+    '😹', // laughing cat with tears
+    '😻', // heart-eyes cat
+    '😼', // smirking cat
+    '🙀', // shocked cat
+    '😾'  // pouting cat
+];
+
 
 // Initialize game
 document.addEventListener('DOMContentLoaded', function() {
