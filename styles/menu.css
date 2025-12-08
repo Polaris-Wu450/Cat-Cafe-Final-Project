@@ -6,36 +6,13 @@
 
 .menu-header h1 {
     font-size: 2.5rem;
-    color: var(--primary-brown);
+    color: var(--primary-pink);
     margin-bottom: 0.5rem;
 }
 
 .menu-header p {
     font-size: 1.1rem;
     color: var(--text-light);
-}
-
-/* Menu Search */
-.menu-search {
-    margin: 2rem auto;
-    max-width: 500px;
-}
-
-.search-input {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    border: 2px solid var(--border-light);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    font-family: inherit;
-    transition: var(--transition);
-    background: var(--white);
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: var(--primary-brown);
-    box-shadow: 0 0 0 4px rgba(217, 197, 168, 0.1);
 }
 
 /* Menu Filter */
@@ -59,15 +36,15 @@
 }
 
 .filter-btn:hover {
-    border-color: var(--primary-brown);
-    color: var(--primary-brown);
+    border-color: var(--primary-pink);
+    color: var(--primary-pink);
     transform: translateY(-2px);
 }
 
 .filter-btn.active {
-    background: var(--primary-brown);
+    background: var(--primary-pink);
     color: var(--white);
-    border-color: var(--primary-brown);
+    border-color: var(--primary-pink);
 }
 
 /* Menu Grid */
@@ -99,27 +76,73 @@
 }
 
 .menu-item-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
-    border-radius: var(--radius-sm);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    color: var(--white);
-    font-weight: 700;
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    font-size: 2.8rem;
+    color: inherit;
+    display: inline-block;
     margin-bottom: 1rem;
-    padding: 6px 4px;
-    box-sizing: border-box;
-    word-wrap: break-word;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
-    line-height: 1.2;
-    hyphens: auto;
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
+    position: relative;
+    text-shadow: 0 0 6px rgba(255, 182, 193, 0.6), 0 0 12px rgba(255, 182, 193, 0.4);
+    animation: emoji-wobble 1.8s ease-in-out infinite alternate;
+    transform-origin: center bottom;
+}
+
+/* Different glow / extra icons for each category */
+.category-drinks .menu-item-icon {
+    text-shadow: 0 0 8px rgba(135, 206, 250, 0.8), 0 0 14px rgba(135, 206, 250, 0.5);
+}
+
+.category-food .menu-item-icon {
+    text-shadow: 0 0 8px rgba(255, 193, 94, 0.8), 0 0 14px rgba(255, 193, 94, 0.5);
+}
+
+.category-desserts .menu-item-icon {
+    text-shadow: 0 0 8px rgba(255, 182, 193, 0.9), 0 0 16px rgba(255, 105, 180, 0.6);
+}
+
+.category-cat-treats .menu-item-icon {
+    text-shadow: 0 0 8px rgba(144, 238, 144, 0.9), 0 0 16px rgba(34, 139, 34, 0.6);
+}
+
+/* Cute extra icons */
+.menu-item-icon::after {
+    content: '';
+    position: absolute;
+    top: -0.3rem;
+    right: -0.4rem;
+    font-size: 1.5rem;
+}
+
+.category-drinks .menu-item-icon::after {
+    content: '💧';
+}
+
+.category-food .menu-item-icon::after {
+    content: '✨';
+}
+
+.category-desserts .menu-item-icon::after {
+    content: '🍭';
+}
+
+.category-cat-treats .menu-item-icon::after {
+    content: '🐾';
+}
+
+/* Wobble animation */
+@keyframes emoji-wobble {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+        transform: translateY(-4px) rotate(-6deg) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) rotate(4deg) scale(1.02);
+    }
 }
 
 .menu-item-info {
@@ -154,13 +177,13 @@
 .menu-item-price {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--primary-brown);
+    color: var(--primary-dark);
 }
 
 .add-to-cart-btn {
     width: 100%;
     padding: 0.875rem 1.5rem;
-    background: var(--primary-brown);
+    background: var(--primary-pink);
     color: var(--white);
     border: none;
     border-radius: var(--radius-sm);
@@ -195,7 +218,7 @@
     position: fixed;
     top: 100px;
     right: 20px;
-    background: var(--primary-brown);
+    background: var(--primary-pink);
     color: var(--white);
     padding: 1rem 1.5rem;
     border-radius: var(--radius-sm);
