@@ -337,3 +337,26 @@ function showValidationError(message) {
         }, 300);
     }, 5000);
 }
+
+//use the same emoji from menu, add to the cart
+function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    let existing = cart.find(i => i.id === item.id);
+
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            category: item.category,
+            emoji: item.emoji,   // ⭐⭐ 必须加入这一行
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}

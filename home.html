@@ -8,6 +8,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;   /* makes it look clean */
+            border-radius: 20px; /* same rounded corners as your placeholder */
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -32,15 +40,16 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Welcome to Cat Café</h1>
-                    <p style="margin-bottom: 32px; height: 1.2rem;"></p>
-                    <div class="hero-buttons">
+                    <h1 class="hero-title" style="text-align: center;">Welcome to Cat Café</h1>
+                    <p style="margin-bottom: 0px; height: 1.2rem;"></p>
+                    <div class="hero-buttons" style="display: flex; justify-content: center;">
                         <a href="menu.html" class="btn btn-primary">View Menu</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <div class="hero-placeholder"></div>
+                    <img src="images/homeImg.png" alt="Cat Café Image" class="hero-photo">
                 </div>
+
             </div>
         </section>
 
@@ -49,29 +58,36 @@
             <div class="container">
                 <h2 class="section-title">Why Visit Us?</h2>
                 <div class="features-grid">
+
                     <div class="feature-card">
-                        <span class="feature-icon">Cats</span>
+                        <span class="feature-icon">🐱</span>
                         <h3>Adorable Cats</h3>
                         <p>Meet our friendly feline residents who love making new friends</p>
                     </div>
+
                     <div class="feature-card">
-                        <span class="feature-icon">Coffee</span>
+                        <span class="feature-icon">☕</span>
                         <h3>Great Coffee</h3>
                         <p>Premium coffee and delicious treats made with love</p>
                     </div>
+
                     <div class="feature-card">
-                        <span class="feature-icon">Home</span>
+                        <span class="feature-icon">🏡</span>
                         <h3>Cozy Atmosphere</h3>
                         <p>Relax in our warm and comfortable space</p>
                     </div>
+
                     <div class="feature-card">
-                        <span class="feature-icon">Game</span>
+                        <span class="feature-icon">🎮</span>
                         <h3>Fun Games</h3>
                         <p>Play our cat-themed games while you wait</p>
                     </div>
+
                 </div>
             </div>
         </section>
+
+
 
         <!-- Popular Items Section -->
         <section class="popular-items">
@@ -123,8 +139,9 @@
                         </p>
                     </div>
                     <div class="about-image">
-                        <div class="about-placeholder"></div>
+                        <img src="images/welcomeImg.png" alt="Welcome Image" class="about-photo">
                     </div>
+
                 </div>
             </div>
         </section>

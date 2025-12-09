@@ -502,31 +502,36 @@ button {
     background: var(--white);
 }
 
+/* Make feature-card look like item-card */
 .feature-card {
-    text-align: center;
-    padding: 32px;
+    background: var(--white);
     border-radius: var(--radius-lg);
-    background: var(--background-cream);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
     transition: var(--transition);
 }
 
 .feature-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     box-shadow: var(--shadow-md);
 }
 
-.feature-card .feature-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 24px;
-    background: linear-gradient(135deg, var(--primary-brown) 0%, var(--primary-dark) 100%);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-weight: 700;
-    font-size: 1.2rem;
+/* Make feature-icon behave like item-icon */
+.feature-icon {
+    background: none;
+    width: auto;
+    height: auto;
+    padding: 0;
+    font-size: 2.8rem;
+    color: inherit;
+    display: inline-block;
+    margin: 0 auto 1rem;
+    position: relative;
+    text-shadow: 0 0 6px rgba(255, 182, 193, 0.6),
+                 0 0 12px rgba(255, 182, 193, 0.4);
+    animation: emoji-wobble 1.8s ease-in-out infinite alternate;
+    transform-origin: center bottom;
 }
 
 .feature-card h3 {
@@ -816,4 +821,19 @@ button {
     .about-placeholder {
         height: 200px;
     }
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 20px; /* matches your design rounded corners */
+    object-fit: cover;
+    box-shadow: var(--shadow-md);
 }
