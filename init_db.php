@@ -4,7 +4,20 @@
  * Creates database and tables if they don't exist
  */
 
-$db = new SQLite3('cat_cafe.db');
+// Initialize database - check multiple possible paths
+// Priority: i6 server path > current directory (local)
+$db_path = '/home/sw5693/databases/cat_cafe.db';
+if (!file_exists($db_path)) {
+    $db_path = 'cat_cafe.db';
+}
+
+// Create directory if it doesn't exist (for i6 server path)
+$db_dir = dirname($db_path);
+if ($db_dir !== '.' && $db_dir !== '/' && !is_dir($db_dir)) {
+    mkdir($db_dir, 0755, true);
+}
+
+$db = new SQLite3($db_path);
 
 // Create users table
 $db->exec("CREATE TABLE IF NOT EXISTS users (

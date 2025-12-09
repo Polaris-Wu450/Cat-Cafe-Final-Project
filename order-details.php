@@ -6,8 +6,12 @@
 
 header('Content-Type: application/json');
 
-// Initialize database - use databases/ directory on server, or current directory locally
-$db_path = file_exists('databases/cat_cafe.db') ? 'databases/cat_cafe.db' : 'cat_cafe.db';
+// Initialize database - check multiple possible paths
+// Priority: i6 server path > current directory (local)
+$db_path = '/home/sw5693/databases/cat_cafe.db';
+if (!file_exists($db_path)) {
+    $db_path = 'cat_cafe.db';
+}
 try {
     if (!file_exists($db_path)) {
         throw new Exception('Database file not found.');
