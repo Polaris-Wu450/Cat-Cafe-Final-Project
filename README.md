@@ -34,7 +34,8 @@ Cat-Cafe-Final-Project/
 │   ├── signup.php        # User registration (SQLite3)
 │   ├── login.php         # User authentication (SQLite3)
 │   ├── cart.php          # Order processing (SQLite3)
-│   └── search.php        # Menu search (SQLite3)
+│   ├── order-history.php # Order history retrieval (SQLite3)
+│   └── order-details.php # Order details retrieval (SQLite3)
 └── cat_cafe.db           # SQLite3 database (created after init)
 ```
 
@@ -180,7 +181,8 @@ All PHP scripts use SQLite3 for data storage:
 1. **signup.php** - User registration with password hashing
 2. **login.php** - User authentication with password verification
 3. **cart.php** - Stores shopping cart orders in database
-4. **search.php** - Searches menu items from database
+4. **order-history.php** - Retrieves user's order history
+5. **order-details.php** - Retrieves specific order details
 
 ### JavaScript Validation
 - All forms validate data client-side before sending to PHP

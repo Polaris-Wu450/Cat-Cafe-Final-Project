@@ -80,27 +80,48 @@ This will create:
 }
 ```
 
-### 4. search.php
-**Purpose:** Search menu items
+### 4. order-history.php
+**Purpose:** Retrieve user's order history
 **Method:** GET
 **Parameters:**
-- `q` (optional, search query)
-- `category` (optional, filter by category)
+- `userId` (required, integer)
 
 **Response:**
 ```json
 {
     "success": true,
-    "items": [
+    "orders": [
         {
             "id": 1,
-            "name": "Caramel Macchiato",
-            "price": 5.50,
-            "category": "drinks",
-            "description": "Rich espresso with caramel and steamed milk"
+            "items": [...],
+            "subtotal": 25.50,
+            "tax": 2.04,
+            "total": 27.54,
+            "order_date": "2025-01-15 14:30:00"
         }
-    ],
-    "count": 1
+    ]
+}
+```
+
+### 5. order-details.php
+**Purpose:** Retrieve specific order details
+**Method:** GET
+**Parameters:**
+- `orderId` (required, integer)
+- `userId` (required, integer, for security validation)
+
+**Response:**
+```json
+{
+    "success": true,
+    "order": {
+        "orderId": 1,
+        "items": [...],
+        "subtotal": 25.50,
+        "tax": 2.04,
+        "total": 27.54,
+        "order_date": "2025-01-15 14:30:00"
+    }
 }
 ```
 
@@ -160,7 +181,8 @@ Cat-Cafe-Final-Project/
 ├── signup.php           # User registration
 ├── login.php            # User authentication
 ├── cart.php             # Order processing
-├── search.php           # Menu search
+├── order-history.php    # Order history retrieval
+├── order-details.php    # Order details retrieval
 └── cat_cafe.db          # SQLite3 database (created after init)
 ```
 
@@ -170,5 +192,5 @@ Cat-Cafe-Final-Project/
 2. Test signup: Fill out registration form
 3. Test login: Use registered credentials
 4. Test cart: Add items and checkout
-5. Test search: Type in search box on menu page
+5. Test order history: View past orders after placing an order
 
