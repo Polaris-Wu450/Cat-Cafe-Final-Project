@@ -163,6 +163,11 @@ function checkForMatch() {
 
 // Start timer
 function startTimer() {
+    // Clear any existing timer first to prevent multiple intervals
+    if (gameState.timerInterval) {
+        clearInterval(gameState.timerInterval);
+    }
+    
     gameState.timerInterval = setInterval(() => {
         gameState.timer++;
         updateTimerDisplay();
