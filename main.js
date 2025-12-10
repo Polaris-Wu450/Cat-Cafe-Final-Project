@@ -128,13 +128,13 @@ function handleLogout() {
 
 // Get cart from localStorage
 function getCart() {
-    const cart = localStorage.getItem('catCafeCart');
+    const cart = localStorage.getItem('cart');
     return cart ? JSON.parse(cart) : [];
 }
 
 // Save cart to localStorage
 function saveCart(cart) {
-    localStorage.setItem('catCafeCart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
     updateCartCount();
 }
 
@@ -197,15 +197,16 @@ function getCartTotal() {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 }
 
-// Update cart count in navbar
+// Update cart count in navbar (used globally across all pages)
 function updateCartCount() {
     const cart = getCart();
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartCountElement = document.getElementById('cartCount');
+    
+    // Use cart-count ID (standard across all pages)
+    const cartCountElement = document.getElementById('cart-count');
     
     if (cartCountElement) {
         cartCountElement.textContent = totalItems;
-        cartCountElement.style.display = totalItems > 0 ? 'block' : 'none';
     }
 }
 

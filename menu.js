@@ -156,15 +156,3 @@ function showAddToCartFeedback(itemName) {
         }, 300);
     }, 2000);
 }
-
-// Update cart count in navbar
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    const cartBadge = document.getElementById('cart-count');
-    if (cartBadge) {
-        cartBadge.textContent = totalItems;
-    }
-}
-

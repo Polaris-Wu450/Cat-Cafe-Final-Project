@@ -210,14 +210,4 @@ function displayOrders(orders) {
     container.innerHTML = ordersHtml;
 }
 
-// Update cart count
-function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    const cartBadge = document.getElementById('cart-count');
-    if (cartBadge) {
-        cartBadge.textContent = totalItems;
-    }
-}
 
