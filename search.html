@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu - Cat Café</title>
+    <title>Product Search - Cat Café</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
             </button>
             <ul class="nav-menu">
                 <li><a href="home.html">Home</a></li>
-                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="menu.html">Menu</a></li>
                 <li><a href="game.html">Game</a></li>
                 <li><a href="order-history.html">Order History</a></li>
                 <li><a href="cart.html" class="cart-link">
@@ -35,21 +35,23 @@
 
     <main class="container">
         <section class="menu-header">
-            <h1>Our Menu</h1>
-            <p>Delicious treats for you and your feline friends!</p>
-            <a href="search.html" class="search-link">Search Products</a>
+            <h1>Product Search</h1>
+            <p>Find your favorite items!</p>
         </section>
 
-        <div class="menu-filter">
-            <button class="filter-btn active" data-category="all">All</button>
-            <button class="filter-btn" data-category="drinks">Drinks</button>
-            <button class="filter-btn" data-category="food">Food</button>
-            <button class="filter-btn" data-category="desserts">Desserts</button>
-            <button class="filter-btn" data-category="cat-treats">Cat Treats</button>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search products by name..." class="search-input">
+                <button onclick="performSearch()" class="search-btn">Search</button>
+            </div>
         </div>
 
-        <div class="menu-grid" id="menu-items">
-            <!-- Menu items will be populated by JavaScript -->
+        <div class="menu-grid" id="search-results">
+            <!-- Search results will be populated here -->
+        </div>
+
+        <div id="no-results" class="no-items" style="display: none;">
+            No products found. Try a different search term.
         </div>
     </main>
 
@@ -60,6 +62,7 @@
     </footer>
 
     <script src="main.js"></script>
-    <script src="menu.js"></script>
+    <script src="search.js"></script>
 </body>
 </html>
+

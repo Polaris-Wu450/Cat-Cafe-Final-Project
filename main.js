@@ -215,11 +215,12 @@ function updateCartCount() {
 // ================================
 
 function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobileMenuToggle');
-    const navMenu = document.getElementById('navMenu');
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
     
     if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', function() {
+        mobileToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
             navMenu.classList.toggle('active');
             this.classList.toggle('active');
         });
