@@ -90,12 +90,22 @@ function createCard(emoji, index) {
     return card;
 }
 
+// Audio for card clicks
+const clickSound = new Audio('assets/click.mp3');
+
 // Handle click
 function handleCardClick(index) {
     if (gameState.isProcessing) return;
 
     const card = document.querySelector(`[data-index="${index}"]`);
     if (card.classList.contains('flipped') || card.classList.contains('matched')) return;
+
+    // Play click sound
+    clickSound.currentTime = 0; // Reset to start for rapid clicks
+    clickSound.play().catch(e => {
+        // Ignore audio play errors (e.g., user hasn't interacted with page yet)
+        console.log('Audio play failed:', e);
+    });
 
     // Start real timer on first move
     if (gameState.startTime === null) {
